@@ -1,51 +1,86 @@
 from __future__ import print_function
 import random
-from shmarkov import *
-import nltk
-from nltk.corpus import gutenberg
+# from shmarkov import *
+# import nltk
+# from nltk.corpus import gutenberg
 from collections import Counter
 import markovify
 
 
-model_a = markovify.Text(open("whitman-leaves.txt"))
-model_b = markovify.Text(open("fw.txt"))
-model_c = markovify.Text(open("shakespeare-macbeth.txt"))
-model_d = markovify.Text(open("bonbon.txt"))
+kafka = markovify.Text(open("kafka.txt"))
+finnegan = markovify.Text(open("fw.txt"))
+shakespeare = markovify.Text(open("shakespeare-macbeth.txt"))
+beckett = markovify.Text(open("bonbon.txt"))
+wittgenstein = markovify.Text(open("wittgenstein.txt"))
+dante = markovify.Text(open("dante.txt"))
+wells = markovify.Text(open("wells.txt"))
+
+# ====== COMBINED MODELS 
+combo1 = markovify.combine([ kafka, finnegan, shakespeare, beckett, wittgenstein, dante, wells ], [ 1.5, 1, 1, 1.5, 1.5, 1, 1 ])
+
+combo2 = markovify.combine([ kafka, finnegan, shakespeare, beckett ], [ 1.5, 1, 1, 1.5 ])
+
+combo3 = markovify.combine([ dante, wells, wittgenstein], [ 1, 1, 1 ])
 
 
+"""
+TODO: 
+* combo2 = kafka, joyce, shakespeare, beckett
+* combo3 = dante, wells, wittgenstein
 
-combo = markovify.combine([ model_a, model_b, model_c, model_d ], [ 1.5, 1, 1, 1.5 ])
-print("===================================================================================\n")
+"""
+
+print ("\n")
+print("===== CORPORAJUICE =====")
 
 
 def generate(text):
     sentences = []
     for i in range(9):
-        sentences.append(combo.make_sentence())
+        sentences.append(combo1.make_sentence())
         result = '\n'.join(sentences)
     return(result)
 
 
-print(generate(combo))
-
+print(generate(combo1))
 print ("\n")
-print("===================================================================================\n")
 
-
-
-for i in range(9):
-    print(combo.make_sentence())
-
-print ("\n")
-print("===================================================================================\n")
-
-
-sentences = [combo.make_sentence(tries=1000) for i in range(5)]
+sentences = [combo1.make_sentence(tries=1000) for i in range(5)]
 new_para = '\n'.join(sentences)
 print(new_para)
 
+#NOTE combo 2
+
 print ("\n")
-print("===================================================================================\n")
+print("===== KAFKA, JOYCE, SHAKESPEARE, BECKETT =====")
+
+
+def generate(text):
+    sentences = []
+    for i in range(9):
+        sentences.append(combo2.make_sentence())
+        result = '\n'.join(sentences)
+    return(result)
+
+
+print(generate(combo2))
+
+print ("\n")
+print("===== DANTE, WELLS, WITTGENSTEIN =====")
+
+for i in range(9):
+    print(combo3.make_sentence())
+
+print ("\n")
+# print("===================================================================================\n")
+
+
+# sentences = [combo1.make_sentence(tries=1000) for i in range(5)]
+# new_para = '\n'.join(sentences)
+# print(new_para)
+
+# print ("\n")
+# print("===================================================================================\n")
 
 
 
