@@ -18,7 +18,7 @@ wells = markovify.Text(open("wells.txt"))
 # ====== COMBINED MODELS 
 combo1 = markovify.combine([ kafka, finnegan, shakespeare, beckett, wittgenstein, dante, wells ], [ 1.5, 1, 1, 1.5, 1.5, 1, 1 ])
 
-combo2 = markovify.combine([ kafka, finnegan, shakespeare, beckett ], [ 1.5, 1, 1, 1.5 ])
+combo2 = markovify.combine([ kafka, finnegan, shakespeare, beckett ], [ 2, 1, 1, 1.5 ])
 
 combo3 = markovify.combine([ dante, wells, wittgenstein], [ 1, 1, 1 ])
 
