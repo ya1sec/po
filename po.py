@@ -18,6 +18,9 @@ blake = markovify.Text(open("blake-poems.txt"))
 thursday = markovify.Text(open("chesterton-thursday.txt"))
 frost = markovify.Text(open("frost.txt"))
 whitman = markovify.Text(open("whitman-leaves.txt"))
+unknown = markovify.Text(open("unknown.txt"))
+will = markovify.Text(open("will.txt"))
+edin = markovify.Text(open("edinburgh.txt"))
 
 # ====== COMBINED MODELS
 combo1 = markovify.combine([ kafka, finnegan, shakespeare, beckett, wittgenstein, dante, wells ], [ 1.5, 1, 1, 1.5, 1.5, 1, 1 ])
@@ -28,6 +31,8 @@ combo3 = markovify.combine([ dante, wells, wittgenstein], [ 1, 1, 1 ])
 
 
 combo4 = markovify.combine([ blake, thursday, frost, whitman ], [ 1, 1, 1, 1 ])
+
+combo5 = markovify.combine([ unknown, will, edin ], [ 1, 1, 1 ])
 
 """
 TODO:
@@ -89,6 +94,15 @@ print ("\n")
 
 
 
+print ("\n")
+
+
+print("===== another =====")
+
+for i in range(9):
+    print(combo4.make_sentence())
+
+print ("\n")
 
 
 
