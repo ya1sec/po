@@ -14,8 +14,12 @@ beckett = markovify.Text(open("bonbon.txt"))
 wittgenstein = markovify.Text(open("wittgenstein.txt"))
 dante = markovify.Text(open("dante.txt"))
 wells = markovify.Text(open("wells.txt"))
+blake = markovify.Text(open("blake-poems.txt"))
+thursday = markovify.Text(open("chesterton-thursday.txt"))
+frost = markovify.Text(open("frost.txt"))
+whitman = markovify.Text(open("whitman-leaves.txt"))
 
-# ====== COMBINED MODELS 
+# ====== COMBINED MODELS
 combo1 = markovify.combine([ kafka, finnegan, shakespeare, beckett, wittgenstein, dante, wells ], [ 1.5, 1, 1, 1.5, 1.5, 1, 1 ])
 
 combo2 = markovify.combine([ kafka, finnegan, shakespeare, beckett ], [ 2, 1, 1, 1.5 ])
@@ -23,15 +27,17 @@ combo2 = markovify.combine([ kafka, finnegan, shakespeare, beckett ], [ 2, 1, 1,
 combo3 = markovify.combine([ dante, wells, wittgenstein], [ 1, 1, 1 ])
 
 
+combo4 = markovify.combine([ blake, thursday, frost, whitman ], [ 1, 1, 1, 1 ])
+
 """
-TODO: 
+TODO:
 * combo2 = kafka, joyce, shakespeare, beckett
 * combo3 = dante, wells, wittgenstein
 
 """
 
 print ("\n")
-print("===== CORPORAJUICE =====")
+print("===== KORPIS =====")
 
 
 def generate(text):
@@ -72,6 +78,20 @@ for i in range(9):
     print(combo3.make_sentence())
 
 print ("\n")
+
+
+print("===== #$# =====")
+
+for i in range(9):
+    print(combo4.make_sentence())
+
+print ("\n")
+
+
+
+
+
+
 # print("===================================================================================\n")
 
 
@@ -87,7 +107,7 @@ print ("\n")
 
 # with open("fw.txt") as f:
 #     text = f.read()
-    
+
 # text_model = markovify.Text(text)
 
 # for i in range(5):
@@ -121,7 +141,7 @@ print ("\n")
 # for i in range(len(words)-1):
 #     this_pair = (words[i], words[i+1])
 #     pairs.append(this_pair)
-    
-    
+
+
 # pair_counts = Counter(pairs)
 # print(pair_counts.most_common(10))
