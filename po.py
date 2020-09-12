@@ -34,6 +34,8 @@ combo4 = markovify.combine([ blake, thursday, frost, whitman ], [ 1, 1, 1, 1 ])
 
 combo5 = markovify.combine([ unknown, will, edin ], [ 1, 1, 1 ])
 
+combo6 = markovify.combine([ unknown, will, edin ], [ 1, 1, 1 ])
+
 """
 TODO:
 * combo2 = kafka, joyce, shakespeare, beckett
