@@ -102,7 +102,7 @@ print ("\n")
 print("===== another =====")
 
 for i in range(9):
-    print(combo4.make_sentence())
+    print(combo5.make_sentence())
 
 print ("\n")
 
