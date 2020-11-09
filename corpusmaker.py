@@ -1,5 +1,6 @@
 from __future__ import print_function
 import sys
+sys.path.append('/usr/local/lib/python3.8/site-packages')
 import random
 from collections import Counter
 import markovify
@@ -56,7 +57,6 @@ gq = [
 
 answers = inquirer.prompt(q)
 while True:
-    
     if answers['action'] == 'gen':
         # print("working")
         genanswers = inquirer.prompt(gq)
