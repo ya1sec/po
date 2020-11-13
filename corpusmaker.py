@@ -10,7 +10,7 @@ from termcolor import colored, cprint
 kafka = markovify.Text(open("kafka.txt"))
 finnegan = markovify.Text(open("fw.txt"))
 shakespeare = markovify.Text(open("shakespeare-macbeth.txt"))
-beckett = markovify.Text(open("bonbon.txt"))
+beckett = markovify.Text(open("threenovels.txt"))
 wittgenstein = markovify.Text(open("wittgenstein.txt"))
 dante = markovify.Text(open("dante.txt"))
 wells = markovify.Text(open("wells.txt"))
@@ -25,6 +25,7 @@ dantewellswittgenstein = markovify.Text(open("dante-wells-wittgenstein.txt"))
 unknown_shakespeare_witt = markovify.Text(open("unknown_shakespeare_witt.txt"))
 shakey = markovify.Text(open("shakey.txt"))
 wits = markovify.Text(open("wits2.txt"))
+
 # ====== COMBINED MODELS
 combo1 = markovify.combine([ kafka, finnegan, shakespeare, beckett, wittgenstein, dante, wells ], [ 1.5, 1, 1, 1.5, 1.5, 1, 1 ])
 
@@ -45,18 +46,19 @@ print(text)
 
 q = [
     inquirer.List('action',
-                  message="What u need?",
+                  message="What would you like to do?",
                   choices=[('Generate from model', 'gen'), ('Make new model', 'new'), ('Exit', 'exit')])
 ]
 
 gq = [
     inquirer.List('model',
                   message="Choose a model to generate from:",
-                  choices=[('full-corpis', 'all'), ('kafka-joyce-shakespeare-beckett', 'mod1'), ('dante-wells-wittgenstein', 'mod2'), ('unknown', 'mod3'), ('shakespeare', 'mod4'), ('wits', 'mod5'), ('Return to main menu', 'return'), ('Exit', 'exit')])
+                  choices=[('full-corpis', 'all'), ('kafka-joyce-shakespeare-beckett', 'mod1'), ('dante-wells-wittgenstein', 'mod2'), ('unknown', 'mod3'), ('shakespeare', 'mod4'), ('beckett', 'mod5'), ('Return to main menu', 'return'), ('Exit', 'exit')])
 ]
 
 answers = inquirer.prompt(q)
 while True:
+
     if answers['action'] == 'gen':
         # print("working")
         genanswers = inquirer.prompt(gq)
@@ -108,7 +110,7 @@ while True:
         if genanswers['model'] == 'mod5':
             print("\n")
             for i in range(9):
-                print(wits.make_sentence())
+                print(beckett.make_sentence())
             print("\n")
             continue
         if genanswers['model'] == 'return':
