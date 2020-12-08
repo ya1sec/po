@@ -19,8 +19,6 @@ thursday = markovify.Text(open("chesterton-thursday.txt"))
 frost = markovify.Text(open("frost.txt"))
 whitman = markovify.Text(open("whitman-leaves.txt"))
 unknown = markovify.Text(open("unknown.txt"))
-will = markovify.Text(open("will.txt"))
-edin = markovify.Text(open("edinburgh.txt"))
 dantewellswittgenstein = markovify.Text(open("dante-wells-wittgenstein.txt"))
 unknown_shakespeare_witt = markovify.Text(open("unknown_shakespeare_witt.txt"))
 wits = markovify.Text(open("wits2.txt"))
@@ -28,16 +26,12 @@ wits = markovify.Text(open("wits2.txt"))
 # ====== COMBINED MODELS
 combo1 = markovify.combine([ kafka, finnegan, shakespeare, beckett, wittgenstein, dante, wells ], [ 1.5, 1, 1, 1.5, 1.5, 1, 1 ])
 
-combo2 = markovify.combine([ kafka, shakespeare, beckett ], [ 1, 1.5, 1 ])
+combo2 = markovify.combine([ beckett, wits, whitman], [ 1, 1, 1 ])
 
 combo3 = markovify.combine([ dante, wells, wittgenstein], [ 1, 1, 1 ])
 
+combo5 = markovify.combine([ kafka, shakespeare, beckett ], [ 1, 1.5, 1 ])
 
-combo4 = markovify.combine([ blake, thursday, frost, whitman ], [ 1, 1, 1, 1 ])
-
-combo5 = markovify.combine([ unknown, will, edin ], [ 1, 1, 1 ])
-
-combo6 = markovify.combine([ unknown, will, edin ], [ 1, 1, 1 ])
 
 text = colored('WELCOME TO KORPIS', 'white', attrs=['reverse', 'blink'])
 print(text)
@@ -52,7 +46,9 @@ q = [
 gq = [
     inquirer.List('model',
                   message="Choose a model to generate from:",
-                  choices=[('full-corpis', 'all'), ('kafka-joyce-shakespeare-beckett', 'mod1'), ('dante-wells-wittgenstein', 'mod2'), ('unknown', 'mod3'), ('shakespeare', 'mod4'), ('beckett', 'mod5'), ('Return to main menu', 'return'), ('Exit', 'exit')])
+                  choices=[('1', '1'), ('2',
+                      '2'), ('3', '3'), ('4', '4'),
+                      ('5', '5'), ('6', '6'), ('Return to main menu', 'return'), ('Exit', 'exit')])
 ]
 
 answers = inquirer.prompt(q)
@@ -61,7 +57,7 @@ while True:
     if answers['action'] == 'gen':
         # print("working")
         genanswers = inquirer.prompt(gq)
-        if genanswers['model'] == 'all':
+        if genanswers['model'] == '1':
             def generate(text):
                 sentences = []
                 for i in range(9):
@@ -77,7 +73,7 @@ while True:
             print(new_para)
             print ("\n")
             continue
-        if genanswers['model'] == 'mod1':
+        if genanswers['model'] == '2':
             def generate(text):
                 sentences = []
                 for i in range(9):
@@ -88,25 +84,25 @@ while True:
             print(generate(combo2))
             print ("\n")
             continue
-        if genanswers['model'] == 'mod2':
+        if genanswers['model'] == '3':
             print("\n")
             for i in range(9):
                 print(dantewellswittgenstein.make_sentence())
             print("\n")
             continue
-        if genanswers['model'] == 'mod3':
+        if genanswers['model'] == '4':
             print("\n")
             for i in range(9):
                 print(unknown_shakespeare_witt.make_sentence())
             print("\n")
             continue
-        if genanswers['model'] == 'mod4':
+        if genanswers['model'] == '5':
             print("\n")
             for i in range(9):
-                print(shakey.make_sentence())
+                print(combo5.make_sentence())
             print("\n")
             continue
-        if genanswers['model'] == 'mod5':
+        if genanswers['model'] == '6':
             print("\n")
             for i in range(9):
                 print(beckett.make_sentence())

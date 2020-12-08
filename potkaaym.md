@@ -362,3 +362,37 @@ to be interpreted as an effect of
 a thousand little things  
 i would identify by the storm  
 
+a bad attack of dizziness  
+did i know of  
+wasting the whole length of time  
+to know what i have now reached  
+i hope i have to ask so much  
+of so much goes on  
+by a stone in heaven  
+such extraordinary things  
+i decided to tell the difference  
+
+multitude towards the point where  
+began an uproar  
+windows smashed  
+how mathematics help you become  
+degraded, criminal, ill  
+the value of x is  
+the silence of the greenish waters  
+to come straight to my heart  
+without doing violence  
+i lie turned toward it as an old foetus  
+i mean those conversation lozenges  
+how awful  
+
+that was the same question  
+that was the precarious calm
+amid lanes and country  
+he gave it to be, this, that:  
+to howl,  
+stir,  
+crawl of of charity and  
+which, strange to me,  
+head no better able to rattle 
+
+
