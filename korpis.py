@@ -22,7 +22,6 @@ will = markovify.Text(open("will.txt"))
 edin = markovify.Text(open("edinburgh.txt"))
 dantewellswittgenstein = markovify.Text(open("dante-wells-wittgenstein.txt"))
 unknown_shakespeare_witt = markovify.Text(open("unknown_shakespeare_witt.txt"))
-shakey = markovify.Text(open("shakey.txt"))
 wits = markovify.Text(open("wits2.txt"))
 
 # ====== COMBINED MODELS

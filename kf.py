@@ -1,11 +1,11 @@
 from __future__ import print_function
 import markovify
-import json
 from collections import Counter
 import random
 import sys
 sys.path.append('/usr/local/lib/python3.8/site-packages')
 
+"""
 
 with open('kafka.json') as json_file:
     kafka_json = json.load(json_file)
@@ -60,15 +60,53 @@ unknownshakespearewitt = markovify.Text.from_json(unknownshakespearewitt_json)
 combo1 = markovify.Text.from_json(combo1_json)
 combo2 = markovify.Text.from_json(combo2_json)
 
+"""
 
-def generate(text):
+def gentext(text):
     sentences = []
     for i in range(9):
         sentences.append(text.make_sentence())
         result = '\n'.join(sentences)
     return(result)
 
+def gen2(text):
+    print ("\n")
+    print(gentext(text))
+    print ("\n")
+    sentences = [text.make_sentence(tries=1000) for i in range(5)]
+    result = '\n'.join(sentences)
+    print(result)
+    print ("\n")
+    return(result)
 
+"""
+
+print ("\n")
+print(generate(combo1))
+print ("\n")
+
+sentences = [combo1.make_sentence(tries=1000) for i in range(5)]
+new_para = '\n'.join(sentences)
+print(new_para)
+print ("\n")
+
+"""
+
+def newmodel():
+
+    print(f"This corpus will have an ID of {modelID}")
+    corpus_title = input("Enter a name for this corpus: ")
+    input_corpus_files = input("Enter the filenames of each text to be added to this corpus separated by space: ")
+    filenames = input_corpus_files.split()
+    print(f"filenames are {filenames}")
+    with open(f'{corpus_title}.txt', 'w') as outfile:
+        for fname in filenames:
+            with open(fname) as infile:
+                for line in infile:
+                    outfile.write(line)
+    print("complete")
+
+"""
 print("\n")
 print(generate(combo1))
 print("\n")
@@ -78,3 +116,4 @@ new_para = '\n'.join(sentences)
 print(new_para)
 print("\n")
 
+"""

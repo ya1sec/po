@@ -363,27 +363,6 @@ a thousand little things
 i would identify by the storm  
 
 a bad attack of dizziness  
-did i know of  
-wasting the whole length of time  
-to know what i have now reached  
-i hope i have to ask so much  
-of so much goes on  
-by a stone in heaven  
-such extraordinary things  
-i decided to tell the difference  
-
-multitude towards the point where  
-began an uproar  
-windows smashed  
-how mathematics help you become  
-degraded, criminal, ill  
-the value of x is  
-the silence of the greenish waters  
-to come straight to my heart  
-without doing violence  
-i lie turned toward it as an old foetus  
-i mean those conversation lozenges  
-how awful  
 
 that was the same question  
 that was the precarious calm
@@ -391,8 +370,35 @@ amid lanes and country
 he gave it to be, this, that:  
 to howl,  
 stir,  
-crawl of of charity and  
+crawl of charity and  
 which, strange to me,  
 head no better able to rattle 
+
+up to the hunter's hut  
+the vine over the notebook  
+i understood all the lights  
+the smell of the bags  
+crystalline, open, beyond the power to speak  
+a kind of silence one keeps for a great noise  
+yet many fell back again,  
+just as the sun came to the sanctuary,  
+collaborating in a turmoil  
+
+year of the trunk    
+where the trees,   
+to gather apples in the secret,  
+have laid on their knees  
+in the starlight and wept  
+
+in the lower world,  
+suddenly there came a drought  
+
+my nights and days  
+
+in my possession the history of Wilds.  
+
+
+
+
 
 

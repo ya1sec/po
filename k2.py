@@ -1,5 +1,8 @@
 from __future__ import print_function
 import sys
+import kf
+import kv
+import choices
 sys.path.append('/usr/local/lib/python3.8/site-packages')
 import random
 from collections import Counter
@@ -7,6 +10,8 @@ import markovify
 import inquirer
 from termcolor import colored, cprint
 
+
+"""
 kafka = markovify.Text(open("kafka.txt"))
 finnegan = markovify.Text(open("fw.txt"))
 shakespeare = markovify.Text(open("shakespeare-macbeth.txt"))
@@ -22,13 +27,18 @@ unknown = markovify.Text(open("unknown.txt"))
 dantewellswittgenstein = markovify.Text(open("dante-wells-wittgenstein.txt"))
 unknown_shakespeare_witt = markovify.Text(open("unknown_shakespeare_witt.txt"))
 wits = markovify.Text(open("wits2.txt"))
+parasite = markovify.Text(open("parasite.txt"))
+california= markovify.Text(open("california.txt"))
+fail= markovify.Text(open("fail.txt"))
+
+
 
 # ====== COMBINED MODELS
 combo1 = markovify.combine([ kafka, finnegan, shakespeare, beckett, wittgenstein, dante, wells ], [ 1.5, 1, 1, 1.5, 1.5, 1, 1 ])
 
-combo2 = markovify.combine([ beckett, wits, whitman], [ 1, 1, 1 ])
+combo2 = markovify.combine([ beckett, wits, whitman], [ 2, 1, 1 ])
 
-combo3 = markovify.combine([ dante, wells, wittgenstein], [ 1, 1, 1 ])
+combo3 = markovify.combine([ parasite, california, fail ], [ 1, 1, 1 ])
 
 combo5 = markovify.combine([ kafka, shakespeare, beckett ], [ 1, 1.5, 1 ])
 
@@ -36,6 +46,20 @@ combo5 = markovify.combine([ kafka, shakespeare, beckett ], [ 1, 1.5, 1 ])
 text = colored('WELCOME TO KORPIS', 'white', attrs=['reverse', 'blink'])
 print(text)
 
+models = [('1', '1'), ('2','2'), ('3', '3'), ('4', '4'), ('5', '5'), ('6', '6'), ('Return to main menu', 'return'), ('Exit', 'exit')]
+
+# when a new model is created, the id will be len(models) - 1
+modelID = len(models) - 1
+print(modelID)
+# it will be inserted at len(models) - 2 before exit options
+modelIndex = modelID - 1
+print(modelIndex)
+
+
+"""
+
+text = colored('WELCOME TO KORPIS', 'white', attrs=['reverse', 'blink'])
+print(text)
 
 q = [
     inquirer.List('action',
@@ -46,73 +70,48 @@ q = [
 gq = [
     inquirer.List('model',
                   message="Choose a model to generate from:",
-                  choices=[('1', '1'), ('2',
-                      '2'), ('3', '3'), ('4', '4'),
-                      ('5', '5'), ('6', '6'), ('Return to main menu', 'return'), ('Exit', 'exit')])
+                  choices=choices.models)
 ]
 
 answers = inquirer.prompt(q)
 while True:
 
+    print(len(kv.models)) 
+
     if answers['action'] == 'gen':
         # print("working")
         genanswers = inquirer.prompt(gq)
-        if genanswers['model'] == '1':
-            def generate(text):
-                sentences = []
-                for i in range(9):
-                    sentences.append(combo1.make_sentence())
-                    result = '\n'.join(sentences)
-                return(result)
-            print ("\n")
-            print(generate(combo1))
-            print ("\n")
-
-            sentences = [combo1.make_sentence(tries=1000) for i in range(5)]
-            new_para = '\n'.join(sentences)
-            print(new_para)
-            print ("\n")
+        if genanswers['model'] == 1: 
+            kf.gen2(kv.combo2)
             continue
-        if genanswers['model'] == '2':
-            def generate(text):
-                sentences = []
-                for i in range(9):
-                    sentences.append(combo2.make_sentence())
-                    result = '\n'.join(sentences)
-                return(result)
-            print ("\n")
-            print(generate(combo2))
-            print ("\n")
+        if genanswers['model'] == 2:
+            kf.gen2(kv.combo1)
             continue
-        if genanswers['model'] == '3':
-            print("\n")
-            for i in range(9):
-                print(dantewellswittgenstein.make_sentence())
-            print("\n")
+        if genanswers['model'] == 3:
+            kf.gen2(kv.combo3)
             continue
-        if genanswers['model'] == '4':
-            print("\n")
-            for i in range(9):
-                print(unknown_shakespeare_witt.make_sentence())
-            print("\n")
+        if genanswers['model'] == 4:
+            kf.gen2(kv.unknown_shakespeare_witt)
             continue
-        if genanswers['model'] == '5':
-            print("\n")
-            for i in range(9):
-                print(combo5.make_sentence())
-            print("\n")
+        if genanswers['model'] == 5:
+            kf.gen2(kv.combo5)
             continue
-        if genanswers['model'] == '6':
-            print("\n")
-            for i in range(9):
-                print(beckett.make_sentence())
-            print("\n")
+        if genanswers['model'] == 6:
+            kf.gen2(kv.beckett)
             continue
         if genanswers['model'] == 'return':
             answers = inquirer.prompt(q)
             continue
 
     if answers['action'] == 'new':
+        kv.newmodel()
+        answers = inquirer.prompt(q)
+        continue
+    else:
+        break
+    print(answers)
+
+"""
         corpus_title = input("Enter a name for this corpus: ")
         input_corpus_files = input("Enter the filenames of each text to be added to this corpus separated by space: ")
 
@@ -138,119 +137,54 @@ while True:
     print(answers)
 
 
+# ================================================================================
+"""
 
 
-# options = {}
-# #     [USER OPTION] = PROGRAM RESULT
-# options['Generate from model'] = 'gen'
-# options['Make new model'] = 'new'
-# options['Exit'] = 'exit'
+"""
+    if answers['action'] == 'new':
+        print(f"This corpus will have an ID of {modelID}")
+        corpus_title = input("Enter a name for this corpus: ")
+        input_corpus_files = input("Enter the filenames of each text to be added to this corpus separated by space: ")
 
 
-# models = {}
-# #     [USER OPTION] = PROGRAM RESULT
-# models['full-corpis'] = 'all'
-# models['kafka-joyce-shakespeare-beckett'] = 'mod1'
-# models['dante-wells-wittgenstein'] = 'mod2'
-# models['#$#'] = 'mod3'
-# models['Exit'] = 'exit'
+        filenames = input_corpus_files.split()
+        print(f"filenames are {filenames}")
+        
+        
+
+        # filenames = ['./data/shakespeare-macbeth.txt', "./data/fw.txt"]
+        with open(f'{corpus_title}.txt', 'w') as outfile:
+            for fname in filenames:
+                with open(fname) as infile:
+                    for line in infile:
+                        outfile.write(line)
+        print("complete")
+        answers = inquirer.prompt(q)
+        continue
+
+    else:
+        break
+
+    print(answers)
+
+def newmodel():
+
+    print(f"This corpus will have an ID of {modelID}")
+    corpus_title = input("Enter a name for this corpus: ")
+    input_corpus_files = input("Enter the filenames of each text to be added to this corpus separated by space: ")
 
 
+    filenames = input_corpus_files.split()
+    print(f"filenames are {filenames}")
+    
+    
 
-# def selectFromDict(options, name):
-
-#     index = 0
-#     indexValidList = []
-#     cprint('Select ' + name + ':', 'cyan')
-#     for optionName in options:
-#         index = index + 1
-#         indexValidList.extend([options[optionName]])
-#         indStr = colored(str(index), 'red')
-#         cprint(indStr + '. ' + optionName)
-#     inputValid = False
-#     while not inputValid:
-#         inputRaw = input(name + ': ')
-#         inputNo = int(inputRaw) - 1
-#         if inputNo > -1 and inputNo < len(indexValidList):
-#             selected = indexValidList[inputNo]
-#             # print('Selected ' +  name + ': ' + selected)
-#             inputValid = True
-#             # break
-#             continue
-#         else:
-#             print('Please select a valid ' + name + ' number')
-
-#     return selected
-
-# action = selectFromDict(options, 'action')
-# # print(action)
-
-# if action == 'gen':
-#     modelgen = selectFromDict(models, 'model')
-#     if modelgen == 'all':
-#         def generate(text):
-#             sentences = []
-#             for i in range(9):
-#                 sentences.append(combo1.make_sentence())
-#                 result = '\n'.join(sentences)
-#             return(result)
-#         print ("\n")
-#         print(generate(combo1))
-#         print ("\n")
-
-#         sentences = [combo1.make_sentence(tries=1000) for i in range(5)]
-#         new_para = '\n'.join(sentences)
-#         print(new_para)
-#         print ("\n")
-
-#     if modelgen == 'mod1':
-#         def generate(text):
-#             sentences = []
-#             for i in range(9):
-#                 sentences.append(combo2.make_sentence())
-#                 result = '\n'.join(sentences)
-#             return(result)
-#         print ("\n")
-#         print(generate(combo2))
-#         print ("\n")
-
-#     if modelgen == 'mod2':
-#         print("\n")
-#         for i in range(9):
-#             print(dantewellswittgenstein.make_sentence())
-#         print("\n")
-
-#     if modelgen == 'mod3':
-#         print("\n")
-#         for i in range(9):
-#             print(unknown_shakespeare_witt.make_sentence())
-#         print("\n")
-
-
-
-
-    # print(modelgen)
-# elif action == 'new':
-#     # call make_corpus()
-#     corpus_title = input("Choose a name for this corpus: ")
-#     corpus_nickname input("Enter a nickname for this corpus: ")
-#     input_corpus_files = input("Enter the filenames of each text to be added to this corpus separated by space: ")
-
-
-#     filenames = input_corpus_files.split()
-#     print(f"filenames are {filenames}")
-
-
-
-#     # filenames = ['./data/shakespeare-macbeth.txt', "./data/fw.txt"]
-#     with open(f'{corpus_title}.txt', 'w') as outfile:
-#         for fname in filenames:
-#             with open(fname) as infile:
-#                 for line in infile:
-#                     outfile.write(line)
-
-#     # add to list of corpora
-#     print("complete")
-# elif action == 'exit':
-#     break
-
+    # filenames = ['./data/shakespeare-macbeth.txt', "./data/fw.txt"]
+    with open(f'{corpus_title}.txt', 'w') as outfile:
+        for fname in filenames:
+            with open(fname) as infile:
+                for line in infile:
+                    outfile.write(line)
+    print("complete")
+"""
