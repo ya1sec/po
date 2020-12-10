@@ -1,6 +1,8 @@
 from __future__ import print_function
 import sys
 import kf
+import json
+import pickle
 import choices
 sys.path.append('/usr/local/lib/python3.8/site-packages')
 import random
@@ -38,11 +40,25 @@ combo3 = markovify.combine([ parasite, california, fail ], [ 1, 1, 1 ])
 combo5 = markovify.combine([ kafka, shakespeare, beckett ], [ 1, 1.5, 1 ])
 
 
-models = [('1', 1), ('2',2), ('3', 3), ('4', 4), ('5', 5), ('6', 6), ('Return to main menu', 'return'), ('Exit', 'exit')]
+# models = [('1', 1), ('2', 2), ('3', 3), ('4', 4), ('5', 5), ('6', 6), ('Return to main menu', 'return'), ('Exit', 'exit')]
 
+
+# models_json = json.dumps(models)
+
+# with open('models.json', 'w') as outfile:
+#    json.dump(models_json, outfile)
+
+
+
+with open('choices.txt', 'rb') as f:
+    models = pickle.load(f)
+
+# with open('choices.json') as json_file:
+#    data = json.loads(json_file)
+#    models = data['Choices']
 
 # when a new model is created, the id will be len(models) - 1
-modelID = len(choices.models) - 1
+modelID = len(models) - 1
 print(modelID)
 # it will be inserted at len(models) - 2 before exit options
 modelIndex = modelID - 1
@@ -62,5 +78,7 @@ def newmodel():
                     outfile.write(line)
     newtuple = (corpus_title, modelID)
     print(newtuple)
-    choices.models.insert(modelIndex, newtuple)
+    models.insert(modelIndex, newtuple)
+    with open('choices.txt', 'wb') as f:
+        pickle.dump(models, f)
     print("complete")

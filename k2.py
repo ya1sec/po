@@ -70,7 +70,7 @@ q = [
 gq = [
     inquirer.List('model',
                   message="Choose a model to generate from:",
-                  choices=choices.models)
+                  choices=kv.models)
 ]
 
 answers = inquirer.prompt(q)
