@@ -9,24 +9,24 @@ import random
 from collections import Counter
 import markovify
 
-kafka = markovify.Text(open("kafka.txt"))
-finnegan = markovify.Text(open("fw.txt"))
-shakespeare = markovify.Text(open("shakespeare-macbeth.txt"))
-beckett = markovify.Text(open("threenovels.txt"))
-wittgenstein = markovify.Text(open("wittgenstein.txt"))
-dante = markovify.Text(open("dante.txt"))
-wells = markovify.Text(open("wells.txt"))
-blake = markovify.Text(open("blake-poems.txt"))
-thursday = markovify.Text(open("chesterton-thursday.txt"))
-frost = markovify.Text(open("frost.txt"))
-whitman = markovify.Text(open("whitman-leaves.txt"))
-unknown = markovify.Text(open("unknown.txt"))
-dantewellswittgenstein = markovify.Text(open("dante-wells-wittgenstein.txt"))
-unknown_shakespeare_witt = markovify.Text(open("unknown_shakespeare_witt.txt"))
-wits = markovify.Text(open("wits2.txt"))
-parasite = markovify.Text(open("parasite.txt"))
-california= markovify.Text(open("california.txt"))
-fail= markovify.Text(open("fail.txt"))
+kafka = markovify.Text(open("txt/kafka.txt"))
+finnegan = markovify.Text(open("txt/fw.txt"))
+shakespeare = markovify.Text(open("txt/shakespeare-macbeth.txt"))
+beckett = markovify.Text(open("txt/threenovels.txt"))
+wittgenstein = markovify.Text(open("txt/wittgenstein.txt"))
+dante = markovify.Text(open("txt/dante.txt"))
+wells = markovify.Text(open("txt/wells.txt"))
+blake = markovify.Text(open("txt/blake-poems.txt"))
+thursday = markovify.Text(open("txt/chesterton-thursday.txt"))
+frost = markovify.Text(open("txt/frost.txt"))
+whitman = markovify.Text(open("txt/whitman-leaves.txt"))
+unknown = markovify.Text(open("txt/unknown.txt"))
+dantewellswittgenstein = markovify.Text(open("txt/dante-wells-wittgenstein.txt"))
+unknown_shakespeare_witt = markovify.Text(open("txt/unknown_shakespeare_witt.txt"))
+wits = markovify.Text(open("txt/wits2.txt"))
+parasite = markovify.Text(open("txt/parasite.txt"))
+california= markovify.Text(open("txt/california.txt"))
+fail= markovify.Text(open("txt/fail.txt"))
 
 
 
@@ -39,23 +39,21 @@ combo3 = markovify.combine([ parasite, california, fail ], [ 1, 1, 1 ])
 
 combo5 = markovify.combine([ kafka, shakespeare, beckett ], [ 1, 1.5, 1 ])
 
+mods = [combo1, combo2, combo3, combo5, kafka,
+        finnegan, shakespeare, beckett, wittgenstein,
+        dante, wells, blake, thursday, frost, whitman,
+        unknown, dantewellswittgenstein,
+        unknown_shakespeare_witt, wits, parasite,
+        california, fail] 
 
-# models = [('1', 1), ('2', 2), ('3', 3), ('4', 4), ('5', 5), ('6', 6), ('Return to main menu', 'return'), ('Exit', 'exit')]
-
-
-# models_json = json.dumps(models)
-
-# with open('models.json', 'w') as outfile:
-#    json.dump(models_json, outfile)
-
+# with open('mods.txt', 'wb') as f:
+#     pickle.dump(mods, f)
 
 
 with open('choices.txt', 'rb') as f:
     models = pickle.load(f)
 
-# with open('choices.json') as json_file:
-#    data = json.loads(json_file)
-#    models = data['Choices']
+
 
 # when a new model is created, the id will be len(models) - 1
 modelID = len(models) - 1
@@ -71,7 +69,7 @@ def newmodel():
     input_corpus_files = input("Enter the filenames of each text to be added to this corpus separated by space: ")
     filenames = input_corpus_files.split()
     print(f"filenames are {filenames}")
-    with open(f'{corpus_title}.txt', 'w') as outfile:
+    with open(f'txt/{corpus_title}.txt', 'w') as outfile:
         for fname in filenames:
             with open(fname) as infile:
                 for line in infile:
@@ -82,3 +80,17 @@ def newmodel():
     with open('choices.txt', 'wb') as f:
         pickle.dump(models, f)
     print("complete")
+
+
+
+# models = [('1', 1), ('2', 2), ('3', 3), ('4', 4), ('5', 5), ('6', 6), ('Return to main menu', 'return'), ('Exit', 'exit')]
+
+
+# models_json = json.dumps(models)
+
+# with open('models.json', 'w') as outfile:
+#    json.dump(models_json, outfile)
+
+# with open('choices.json') as json_file:
+#    data = json.loads(json_file)
+#    models = data['Choices']
