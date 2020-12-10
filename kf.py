@@ -24,7 +24,7 @@ def generate(text):
     print ("\n")
     return(result)
 
-models = kv.models
+# models = kv.models
 
 # def deleteMod(mod):
 #     with open('choices.')

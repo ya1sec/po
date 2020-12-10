@@ -15,15 +15,15 @@ from termcolor import colored, cprint
 text = colored('WELCOME TO KORPIS', 'white', attrs=['reverse', 'blink'])
 print(text)
 
-with open('choices.txt', 'rb') as f:
-    models = pickle.load(f)
+# with open('choices.txt', 'rb') as f:
+#    models = pickle.load(f)
 
 # models = kv.models
 
 listLen = len(kv.models)
 modelID = kv.modelID
 modelIndex = kv.modelIndex
-print(f"the value of model {models[6][0]} one is {models[0][1]}")
+print(f"the value of model {kv.models[6][0]} one is {kv.models[0][1]}")
 
 
 q = [
@@ -35,13 +35,13 @@ q = [
 gq = [
     inquirer.List('model',
                   message="Choose a model to generate from:",
-                  choices=models)
+                  choices=kv.models)
 ]
 
 dq = [
     inquirer.List('delete',
                   message="Choose a model to delete:",
-                  choices=models)
+                  choices=kv.models)
 ]
 
 answers = inquirer.prompt(q)
@@ -81,7 +81,7 @@ while True:
         if isinstance(delID, int):
             if delID < listLen - 2:
                 delIndex = delID - 1
-                models.remove(delIndex)
+                kv.models.remove(delIndex)
         print(delID)
         if answer['delete'] == 'return':
             answers = inquirer.prompt(q)
