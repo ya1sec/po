@@ -68,27 +68,35 @@ while True:
     if answers['action'] == 'gen':
         # print("working")
         genanswers = inquirer.prompt(gq)
-        if genanswers['model'] == 1: 
-            kf.generate(kv.mods[1])
-            continue
-        if genanswers['model'] == 2:
-            kf.generate(kv.mods[0])
-            continue
-        if genanswers['model'] == 3:
-            kf.generate(kv.mods[4])
-            continue
-        if genanswers['model'] == 4:
-            kf.generate(kv.mods[18])
-            continue
-        if genanswers['model'] == 5:
-            kf.generate(kv.mods[3])
-            continue
-        if genanswers['model'] == 6:
-            kf.generate(kv.mods[7])
-            continue
+        # if genanswers['model'] == 1: 
+        #     kf.generate(kv.mods[1])
+        #     continue
+        # if genanswers['model'] == 2:
+        #     kf.generate(kv.mods[0])
+        #     continue
+        # if genanswers['model'] == 3:
+        #     kf.generate(kv.mods[4])
+        #     continue
+        # if genanswers['model'] == 4:
+        #     kf.generate(kv.mods[18])
+        #     continue
+        # if genanswers['model'] == 5:
+        #     kf.generate(kv.mods[3])
+        #     continue
+        # if genanswers['model'] == 6:
+        #     kf.generate(kv.mods[7])
+        #     continue
+
         if genanswers['model'] == 'return':
             answers = inquirer.prompt(q)
             continue
+        if genanswers['model'] == 'exit':
+            break
+        for key in kv.keys:
+            if genanswers['model'] == key:
+                kf.generate(kv.mods[key])
+                continue
+        continue
     if answers['action'] == 'new':
         kv.newmodel()
         answers = inquirer.prompt(q)
