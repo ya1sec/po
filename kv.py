@@ -81,8 +81,15 @@ print(modelIndex)
 # TODO markovify corpus inside newmodel() and insert into mods list
 
 def newmodel():
+    '''
+    class Mod(object):
+        def __init__(self, corpus_title):
+            self.corpus_title = corpus_title 
+    modDict = {}
+    '''
     print(f"This corpus will have an ID of {modelID}")
     corpus_title = input("Enter a name for this corpus: ")
+    # modDict[corpus_title] = Mod[corpus_title]
     input_corpus_files = input("Enter the filenames of each text to be added to this corpus separated by space: ")
     filenames = input_corpus_files.split()
     print(f"filenames are {filenames}")
