@@ -47,6 +47,14 @@ mods = [combo1, combo2, combo3, combo5, kafka,
         unknown_shakespeare_witt, wits, parasite,
         california, fail] 
 '''
+# loads markov chains from pickle file
+with open('models.pkl', 'rb') as f:
+    modelDict = pickle.load(f)
+keys = list(modelDict)
+chains = modelDict.values()
+mods = list(chains)
+
+
 
 # with open('mods.txt', 'wb') as f:
 #     pickle.dump(mods, f)
@@ -58,8 +66,8 @@ mods = [combo1, combo2, combo3, combo5, kafka,
 with open('choices.txt', 'rb') as f:
     models = pickle.load(f)
 
-with open('txt/mods.txt', 'rb') as f:
-    mods = pickle.load(f)
+# with open('txt/mods.txt', 'rb') as f:
+#     mods = pickle.load(f)
 
 
 
@@ -73,15 +81,8 @@ print(modelIndex)
 # TODO markovify corpus inside newmodel() and insert into mods list
 
 def newmodel():
-    '''
-    class Mod(object):
-        def __init__(self, corpus_title):
-            self.corpus_title = corpus_title 
-    modDict = {}
-    '''
     print(f"This corpus will have an ID of {modelID}")
     corpus_title = input("Enter a name for this corpus: ")
-    # modDict[corpus_title] = Mod[corpus_title]
     input_corpus_files = input("Enter the filenames of each text to be added to this corpus separated by space: ")
     filenames = input_corpus_files.split()
     print(f"filenames are {filenames}")
@@ -93,8 +94,7 @@ def newmodel():
     newtuple = (corpus_title, modelID)
     print(newtuple)
     models.insert(modelIndex, newtuple)
-    # modDict[f'{corpus_title}'].corpus_title = markovify.Text(open(f'txt/{corpus_title}.txt')) 
-    mods.append(markovify.Text(open(f'txt/{corpus_title}.txt')))
+    mods.append(markovify.NewlineText(open(f'txt/{corpus_title}.txt')))
     with open('txt/mods.txt', 'wb') as f:
         pickle.dump(mods, f)
     with open('choices.txt', 'wb') as f:
