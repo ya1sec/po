@@ -25,6 +25,24 @@ modelID = kv.modelID
 modelIndex = kv.modelIndex
 print(f"the value of model {kv.models[6][0]} one is {kv.models[0][1]}")
 
+lastly = [('Return to main menu', 'return'), ('Exit', 'exit')]
+
+# kv.modelDict.update(('Return to main menu', 'return'))
+
+# def getChoices():
+#     insertAt = len(kv.keys) - 2
+#     for key in kv.keys:
+#         i = kv.keys.index(key) + 1
+#         tup = (key, i)
+#         choiceList.insert(insertAt, tup)
+#     # return choiceList
+def getChoices():
+    choiceList = []
+    for key in kv.keys:
+        choiceList.append(key)
+    choiceList.append(('Return to main menu', 'return'))
+    choiceList.append(('Exit', 'exit'))
+    return choiceList
 
 q = [
     inquirer.List('action',
@@ -35,7 +53,7 @@ q = [
 gq = [
     inquirer.List('model',
                   message="Choose a model to generate from:",
-                  choices=kv.models)
+                  choices=getChoices())
 ]
 
 dq = [
@@ -51,22 +69,22 @@ while True:
         # print("working")
         genanswers = inquirer.prompt(gq)
         if genanswers['model'] == 1: 
-            kf.generate(kv.combo2)
+            kf.generate(kv.mods[1])
             continue
         if genanswers['model'] == 2:
-            kf.generate(kv.combo1)
+            kf.generate(kv.mods[0])
             continue
         if genanswers['model'] == 3:
-            kf.generate(kv.combo3)
+            kf.generate(kv.mods[4])
             continue
         if genanswers['model'] == 4:
-            kf.generate(kv.unknown_shakespeare_witt)
+            kf.generate(kv.mods[18])
             continue
         if genanswers['model'] == 5:
-            kf.generate(kv.combo5)
+            kf.generate(kv.mods[3])
             continue
         if genanswers['model'] == 6:
-            kf.generate(kv.beckett)
+            kf.generate(kv.mods[7])
             continue
         if genanswers['model'] == 'return':
             answers = inquirer.prompt(q)
