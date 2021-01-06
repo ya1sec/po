@@ -397,8 +397,32 @@ my nights and days
 
 in my possession the history of Wilds.  
 
+we learne no other  
+would it not, hellish hope  
+if that is decorum  
 
+we came and went  
+like before,  
+the shepherd stands aside to let  
+a record needle bend  
+the sound of the first circle  
+i sleep a little faster  
+the blood drains my reverie  
 
+in a spirit of curiosity,  
+i get up,  
+go out
+everything is changed.  
+my dear tormentor: another beer  
+my dear tormentor: 'all our shit'
 
+the young author generally writes  
+because he or she  
+has no more  
 
-
+money, from vanity, or in any
+art,  
+seasickness in the world  
+Homer or Aristotle  
+loss of selfrespect  
+to equip me for a year  
